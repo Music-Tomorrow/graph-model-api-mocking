@@ -1,21 +1,25 @@
 from sqlalchemy import Boolean, Column, ForeignKey, Integer, String
 from werkzeug.security import generate_password_hash, check_password_hash
 from sqlalchemy.ext.declarative import declarative_base
+
 Base = declarative_base()
+
 
 class Artist(Base):
     __tablename__ = "artists"
 
     id = Column(Integer, primary_key=True, index=True)
-    artist_name = Column(String, unique=True, index=True)
+    artist_name = Column(String, index=True)
     artist_spotify_id = Column(String, unique=True, index=True)
+    image_url = Column(String, index=True)
+
 
 class UserArtists(Base):
     __tablename__ = "user_artists"
 
     id = Column(Integer, primary_key=True, index=True)
-    artist_id = Column(Integer,  index=True)
-    user_id = Column(Integer,  index=True)
+    artist_id = Column(Integer, index=True)
+    user_id = Column(Integer, index=True)
 
 
 class User(Base):
